@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://123.57.78.6:3306/scholarship
+    username: root
+    password: 1234
+
+app:
+  jwtSecret: e07e56d6258c
+  jwtExpirationInMs: 604800000
