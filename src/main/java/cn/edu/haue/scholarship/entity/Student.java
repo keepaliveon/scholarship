@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author yangwei
- * @since 2020-04-11
+ * @since 2020-04-13
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,20 +26,17 @@ public class Student implements Serializable {
     @ApiModelProperty(value = "学号")
     private String studentId;
 
-    @ApiModelProperty(value = "密码")
-    private String password;
-
     @ApiModelProperty(value = "姓名")
     private String name;
 
-    @ApiModelProperty(value = "专业")
-    private String specialty;
+    @ApiModelProperty(value = "性别")
+    private String sex;
 
-    @ApiModelProperty(value = "班级")
-    private String mClass;
+    @ApiModelProperty(value = "所属单位")
+    private Integer unitId;
 
-    @ApiModelProperty(value = "辅导员工号")
-    private String staffId;
+    @ApiModelProperty(value = "密码")
+    private String password;
 
 
 }

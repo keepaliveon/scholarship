@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author yangwei
- * @since 2020-04-11
+ * @since 2020-04-13
  */
 @RestController
 @RequestMapping("/scholarship/admin")

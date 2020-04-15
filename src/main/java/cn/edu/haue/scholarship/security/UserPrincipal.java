@@ -2,7 +2,7 @@ package cn.edu.haue.scholarship.security;
 
 import cn.edu.haue.scholarship.entity.Admin;
 import cn.edu.haue.scholarship.entity.Counsellor;
-import cn.edu.haue.scholarship.entity.RoleName;
+import cn.edu.haue.scholarship.common.RoleName;
 import cn.edu.haue.scholarship.entity.Student;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

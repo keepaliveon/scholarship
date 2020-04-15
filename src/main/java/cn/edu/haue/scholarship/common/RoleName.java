@@ -1,4 +1,4 @@
-package cn.edu.haue.scholarship.entity;
+package cn.edu.haue.scholarship.common;
 
 public enum RoleName {
     ROLE_ADMIN,

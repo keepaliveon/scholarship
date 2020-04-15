@@ -1,4 +1,4 @@
-package cn.edu.haue.scholarship.payload;
+package cn.edu.haue.scholarship.common;
 
 /**
  * Created by rajeevkumarsingh on 19/08/17.

@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author yangwei
- * @since 2020-04-11
+ * @since 2020-04-13
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -32,11 +32,8 @@ public class Counsellor implements Serializable {
     @ApiModelProperty(value = "姓名")
     private String name;
 
-    @ApiModelProperty(value = "年级")
-    private String year;
-
-    @ApiModelProperty(value = "学院")
-    private String department;
+    @ApiModelProperty(value = "所属单位")
+    private Integer unitId;
 
 
 }

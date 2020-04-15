@@ -1,7 +1,7 @@
 package cn.edu.haue.scholarship.controller;
 
 import cn.edu.haue.scholarship.entity.Student;
-import cn.edu.haue.scholarship.payload.JwtAuthenticationResponse;
+import cn.edu.haue.scholarship.common.JwtAuthenticationResponse;
 import cn.edu.haue.scholarship.security.JwtTokenProvider;
 import cn.edu.haue.scholarship.service.IStudentService;
 import io.swagger.annotations.ApiOperation;

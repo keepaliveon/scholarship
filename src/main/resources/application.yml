@@ -4,7 +4,10 @@ spring:
     url: jdbc:mysql://123.57.78.6:3306/scholarship
     username: root
     password: 1234
-
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: cn.edu.haue.scholarship.entity
+  type-handlers-package: cn.edu.haue.scholarship.entity
 app:
   jwtSecret: e07e56d6258c
   jwtExpirationInMs: 604800000
