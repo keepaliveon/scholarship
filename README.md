@@ -7,10 +7,10 @@
 
 - 分别执行```npm config set registry https://mirrors.huaweicloud.com/repository/npm/``` 和 ```npm cache clean -f```配置npm国内加速镜像
 
-- 执行```https://github.com/keepaliveon/scholarship.git```将后端代码拉取到本地，并执行```cd scholarship```切换到后端项目根目录
+- 执行```git clone https://github.com/keepaliveon/scholarship.git```将后端代码拉取到本地，并执行```cd scholarship```切换到后端项目根目录
 
 - 在后端项目根目录下执行```mvn spring-boot:run```启动后端
 
-- 执行```https://github.com/keepaliveon/scholarship_web.git``` 将前端代码拉取到本地，并执行 ```cd scholarship_web```切换到前端项目根目录
+- 执行```git clone https://github.com/keepaliveon/scholarship_web.git``` 将前端代码拉取到本地，并执行 ```cd scholarship_web```切换到前端项目根目录
 
 - 在前端项目根目录下执行```npm install```安装依赖，完成后执行```npm run serve```启动前端并会自动打开浏览器
