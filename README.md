@@ -13,4 +13,4 @@
 
 - 执行```https://github.com/keepaliveon/scholarship_web.git``` 将前端代码拉取到本地，并执行 ```cd scholarship_web```切换到前端项目根目录
 
-- 在前端项目根目录下执行```npm install```安装依赖，完成后执行```npm run dev```启动前端并会自动打开浏览器
+- 在前端项目根目录下执行```npm install```安装依赖，完成后执行```npm run serve```启动前端并会自动打开浏览器
