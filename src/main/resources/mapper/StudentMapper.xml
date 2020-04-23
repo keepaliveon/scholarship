@@ -4,11 +4,23 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.edu.haue.scholarship.entity.Student">
-        <id column="student_id" property="studentId" />
-        <result column="name" property="name" />
-        <result column="sex" property="sex" />
-        <result column="unit_id" property="unitId" />
-        <result column="password" property="password" />
+        <id column="student_id" property="studentId"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="unit_id" property="unitId"/>
+        <result column="password" property="password"/>
+        <result column="clazz" property="clazz"/>
+        <result column="speciality" property="speciality"/>
     </resultMap>
+
+    <select id="findAllByYearUnitId" parameterType="java.lang.Integer"
+            resultType="cn.edu.haue.scholarship.entity.Student">
+        SELECT student_id, student.`name`, student.sex, A.`name` AS clazz, B.`name` AS speciality
+        FROM student
+                 JOIN unit A ON A.id = student.unit_id
+                 JOIN unit B ON B.id = A.pid
+                 JOIN unit C ON C.id = B.pid
+        WHERE C.id = #{unitId,jdbcType=INTEGER}
+    </select>
 
 </mapper>

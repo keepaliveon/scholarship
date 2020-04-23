@@ -14,5 +14,7 @@ import java.util.List;
  * @since 2020-04-13
  */
 public interface UnitMapper extends BaseMapper<Unit> {
-    List<Unit> getTree();
+    List<Unit> getChildren();
+
+    List<Unit> getTree(Integer id);
 }

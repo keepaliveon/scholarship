@@ -24,7 +24,12 @@ public class UnitServiceImpl extends ServiceImpl<UnitMapper, Unit> implements IU
     private UnitMapper unitMapper;
 
     @Override
-    public List<Unit> getUnitTree() {
-        return unitMapper.getTree();
+    public List<Unit> getTree(Integer id) {
+        return unitMapper.getTree(id);
+    }
+
+    @Override
+    public List<Unit> getNoRootTree(Integer id) {
+        return unitMapper.getTree(id).get(0).getChildren();
     }
 }

@@ -14,5 +14,9 @@ import java.util.List;
  * @since 2020-04-13
  */
 public interface IUnitService extends IService<Unit> {
-    List<Unit> getUnitTree();
+
+    List<Unit> getTree(Integer id);
+
+    List<Unit> getNoRootTree(Integer id);
 }
+

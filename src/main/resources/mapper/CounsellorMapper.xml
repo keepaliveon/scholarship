@@ -4,10 +4,20 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.edu.haue.scholarship.entity.Counsellor">
-        <id column="staff_id" property="staffId" />
-        <result column="password" property="password" />
-        <result column="name" property="name" />
-        <result column="unit_id" property="unitId" />
+        <id column="staff_id" property="staffId"/>
+        <result column="password" property="password"/>
+        <result column="name" property="name"/>
+        <result column="unit_id" property="unitId"/>
+        <result column="year" property="year"/>
+        <result column="collage" property="collage"/>
     </resultMap>
+
+    <select id="list" resultMap="BaseResultMap">
+        SELECT counsellor.staff_id, counsellor.`name`, A.`name` AS year, B.`name` AS collage
+        FROM counsellor
+                 JOIN unit A ON A.id = counsellor.unit_id
+                 JOIN unit B ON B.id = A.pid
+    </select>
+
 
 </mapper>

@@ -2,7 +2,6 @@ package cn.edu.haue.scholarship.security;
 
 import cn.edu.haue.scholarship.entity.Admin;
 import cn.edu.haue.scholarship.entity.Counsellor;
-import cn.edu.haue.scholarship.common.RoleName;
 import cn.edu.haue.scholarship.entity.Student;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,21 +24,22 @@ public class UserPrincipal implements UserDetails {
         this.authorities = authorities;
     }
 
+
     public static UserPrincipal create(Admin admin) {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(RoleName.ROLE_ADMIN.name()));
+        authorities.add(new SimpleGrantedAuthority(admin.getRole()));
         return new UserPrincipal(admin.getUsername(), admin.getPassword(), authorities);
     }
 
     public static UserPrincipal create(Counsellor counsellor) {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(RoleName.ROLE_COUNSELLOR.name()));
+        authorities.add(new SimpleGrantedAuthority(counsellor.getRole()));
         return new UserPrincipal(counsellor.getStaffId(), counsellor.getPassword(), authorities);
     }
 
     public static UserPrincipal create(Student student) {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(RoleName.ROLE_STUDENT.name()));
+        authorities.add(new SimpleGrantedAuthority(student.getRole()));
         return new UserPrincipal(student.getStudentId(), student.getPassword(), authorities);
     }
 

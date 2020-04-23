@@ -1,10 +1,12 @@
 package cn.edu.haue.scholarship.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -23,6 +25,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="Unit对象", description="组织单位")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Unit implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -37,12 +40,7 @@ public class Unit implements Serializable {
     @ApiModelProperty(value = "单位名称")
     private String name;
 
-    @ApiModelProperty(value = "单位级别")
-    private Integer level;
-
-    @ApiModelProperty(value = "辅导员工号")
-    private String staffId;
-
+    @TableField(exist = false)
     private List<Unit> children;
 
 }

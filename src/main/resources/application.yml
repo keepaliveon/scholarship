@@ -11,3 +11,6 @@ mybatis-plus:
 app:
   jwtSecret: e07e56d6258c
   jwtExpirationInMs: 604800000
+logging:
+  level:
+    cn.edu.haue.scholarship.mapper: debug

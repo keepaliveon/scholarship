@@ -4,12 +4,35 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.edu.haue.scholarship.entity.Grade">
-        <id column="id" property="id" />
-        <result column="student_id" property="studentId" />
-        <result column="course" property="course" />
-        <result column="score" property="score" />
-        <result column="year" property="year" />
-        <result column="fail" property="fail" />
+        <id column="student_id" property="studentId"/>
+        <id column="year" property="year"/>
+        <result column="score" property="score"/>
+        <result column="quality" property="quality"/>
+        <result column="mark" property="mark"/>
+        <result column="fail" property="fail"/>
+        <result column="name" property="name"/>
+        <result column="clazz" property="clazz"/>
+        <result column="speciality" property="speciality"/>
     </resultMap>
+    <select id="findAllByYearUnitId" parameterType="java.lang.Integer"
+            resultType="cn.edu.haue.scholarship.entity.Grade">
+        SELECT grade.student_id,
+               student.`name`,
+               B.`name`                    AS speciality,
+               A.`name`                    AS clazz,
+               `year`,
+               score,
+               quality,
+               fail,
+               score * 0.7 + quality * 0.3 AS mark
+        FROM grade
+                 LEFT JOIN student ON student.student_id = grade.student_id
+                 JOIN unit A ON A.id = student.unit_id
+                 JOIN unit B ON B.id = A.pid
+                 JOIN unit C ON C.id = B.pid
+        WHERE C.id = #{unitId,jdbcType=INTEGER}
+        ORDER BY mark DESC, `year`
+    </select>
+
 
 </mapper>

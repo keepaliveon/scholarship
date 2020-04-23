@@ -79,7 +79,8 @@ public class MyBatisPlusGenerateTest {
         strategy.setEntityLombokModel(true);
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setRestControllerStyle(true);
-        strategy.setInclude("admin", "unit", "counsellor", "student", "scholarship", "distribution", "application", "grade", "record", "punishment", "award");
+//        strategy.setInclude("admin", "unit", "counsellor", "student", "scholarship", "distribution", "application", "grade", "record", "punishment", "award");
+        strategy.setInclude("grade");
         mpg.setStrategy(strategy);
         mpg.execute();
     }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-04-13
  */
 @RestController
-@RequestMapping("/scholarship/distribution")
+@RequestMapping("/api/distribution")
 public class DistributionController {
 
 }

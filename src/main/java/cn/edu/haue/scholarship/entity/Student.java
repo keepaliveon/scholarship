@@ -1,6 +1,11 @@
 package cn.edu.haue.scholarship.entity;
 
 import java.io.Serializable;
+
+import cn.edu.haue.scholarship.common.RoleName;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -18,12 +23,14 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="Student对象", description="学生")
+@ApiModel(value = "Student对象", description = "学生")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Student implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "学号")
+    @TableId
     private String studentId;
 
     @ApiModelProperty(value = "姓名")
@@ -38,5 +45,16 @@ public class Student implements Serializable {
     @ApiModelProperty(value = "密码")
     private String password;
 
+    @TableField(exist = false)
+    private String clazz;
 
+    @TableField(exist = false)
+    private String speciality;
+
+    @TableField(exist = false)
+    private String idNumber;
+
+    public String getRole() {
+        return RoleName.ROLE_ADMIN.name();
+    }
 }

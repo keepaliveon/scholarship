@@ -7,8 +7,6 @@
         <id column="id" property="id"/>
         <result column="pid" property="pid"/>
         <result column="name" property="name"/>
-        <result column="level" property="level"/>
-        <result column="staff_id" property="staffId"/>
         <collection property="children" column="id" select="getChildren"/>
     </resultMap>
 
@@ -16,8 +14,8 @@
         SELECT * FROM unit WHERE pid = #{id}
     </select>
 
-    <select id="getTree" resultMap="BaseResultMap">
-        SELECT * FROM unit WHERE id = 1;
+    <select id="getTree" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT * FROM unit WHERE id = #{id,jdbcType=INTEGER}
     </select>
 
 </mapper>
