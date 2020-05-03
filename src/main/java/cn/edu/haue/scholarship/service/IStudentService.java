@@ -18,4 +18,6 @@ import java.util.List;
 public interface IStudentService extends IService<Student> {
 
     IPage<Student> listByYearUnitId(Page<Student> page, Integer unitId);
+
+    Student findStudentById(String id);
 }

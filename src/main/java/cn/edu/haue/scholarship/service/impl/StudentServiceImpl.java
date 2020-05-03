@@ -29,4 +29,9 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         return studentMapper.findAllByYearUnitId(page, unitId);
     }
 
+    @Override
+    public Student findStudentById(String id) {
+        return studentMapper.findStudentById(id);
+    }
+
 }

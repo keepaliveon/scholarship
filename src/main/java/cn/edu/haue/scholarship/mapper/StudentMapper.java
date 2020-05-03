@@ -19,4 +19,6 @@ public interface StudentMapper extends BaseMapper<Student> {
 
     IPage<Student> findAllByYearUnitId(Page<?> page, Integer unitId);
 
+    Student findStudentById(String id);
+
 }

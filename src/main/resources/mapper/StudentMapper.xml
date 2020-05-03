@@ -22,5 +22,13 @@
                  JOIN unit C ON C.id = B.pid
         WHERE C.id = #{unitId,jdbcType=INTEGER}
     </select>
+    <select id="findStudentById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT student_id, student.`name`, student.sex, A.`name` AS clazz, B.`name` AS speciality
+        FROM student
+                 JOIN unit A ON A.id = student.unit_id
+                 JOIN unit B ON B.id = A.pid
+                 JOIN unit C ON C.id = B.pid
+        WHERE student.student_id=#{id,jdbcType=CHAR}
+    </select>
 
 </mapper>

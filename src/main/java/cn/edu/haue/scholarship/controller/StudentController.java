@@ -60,6 +60,13 @@ public class StudentController {
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
+    @GetMapping
+    @ApiOperation("获取学生信息")
+    public ResponseEntity<Student> student(@ApiIgnore @CurrentUser UserPrincipal userPrincipal) {
+        Student student = studentService.findStudentById(userPrincipal.getUsername());
+        return new ResponseEntity<>(student, HttpStatus.OK);
+    }
+
     @GetMapping("{unitId}")
     public ResponseEntity<IPage<Student>> list(@PathVariable("unitId") Integer unitId, Long current, Long size) {
         Page<Student> page = new Page<>(current, size);

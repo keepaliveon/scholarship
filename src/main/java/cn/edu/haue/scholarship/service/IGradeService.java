@@ -21,4 +21,6 @@ public interface IGradeService extends IService<Grade> {
     IPage<Grade> listByYearUnitId(Page<Student> page, Integer unitId);
 
     String upload(List<Grade> grades, String year);
+
+    Grade getStudentInfo(String studentId, String year);
 }

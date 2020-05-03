@@ -61,4 +61,10 @@ public class GradeServiceImpl extends ServiceImpl<GradeMapper, Grade> implements
         }
         return "成功添加" + add + "条记录" + "更新" + update + "条记录";
     }
+
+    @Override
+    public Grade getStudentInfo(String studentId, String year) {
+        return gradeMapper.getStudentGradeInfoByStudentIdAndYear(studentId, year);
+    }
+
 }

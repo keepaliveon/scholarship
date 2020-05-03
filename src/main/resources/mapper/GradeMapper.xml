@@ -4,15 +4,17 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.edu.haue.scholarship.entity.Grade">
-        <id column="student_id" property="studentId"/>
         <id column="year" property="year"/>
+        <id column="student_id" property="studentId"/>
+        <result column="name" property="name"/>
+        <result column="speciality" property="speciality"/>
+        <result column="clazz" property="clazz"/>
         <result column="score" property="score"/>
         <result column="quality" property="quality"/>
         <result column="mark" property="mark"/>
         <result column="fail" property="fail"/>
-        <result column="name" property="name"/>
-        <result column="clazz" property="clazz"/>
-        <result column="speciality" property="speciality"/>
+        <result column="spec_rank" property="specRank"/>
+        <result column="class_rank" property="classRank"/>
     </resultMap>
     <select id="findAllByYearUnitId" parameterType="java.lang.Integer"
             resultType="cn.edu.haue.scholarship.entity.Grade">
@@ -33,11 +35,12 @@
         WHERE C.id = #{unitId,jdbcType=INTEGER}
         ORDER BY mark DESC, `year`
     </select>
-    <select id="getStudentGradeInfoByStudentIdAndYear" resultType="cn.edu.haue.scholarship.entity.Grade">
+    <select id="getStudentGradeInfoByStudentIdAndYear" resultMap="BaseResultMap">
         select s.name,
                g.score,
                g.quality,
                g.fail,
+               g.year,
                (select (select count(g2.student_id)
                         from grade g2
                                  LEFT JOIN student s2 ON s2.student_id = g2.student_id
