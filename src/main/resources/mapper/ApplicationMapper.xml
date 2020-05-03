@@ -8,7 +8,26 @@
         <result column="scholarship_id" property="scholarshipId" />
         <result column="level" property="level" />
         <result column="state" property="state" />
-        <result column="create_time" property="createTime" />
+        <result column="name" property="name" />
+        <result column="class" property="clazz" />
+        <result column="spec" property="spec" />
+        <result column="year" property="year" />
+        <result column="s_name" property="scholarshipName" />
     </resultMap>
+    <select id="listPublicity" resultMap="BaseResultMap">
+        select a.student_id as student_id,
+               s.name       as name,
+               u1.name      as class,
+               u2.name      as spec,
+               s2.year      as year,
+               s2.name      as s_name,
+               a.level      as level
+        from application a
+                 left join student s on a.student_id = s.student_id
+                 left join unit u1 on s.unit_id = u1.id
+                 left join unit u2 on u1.pid = u2.id
+                 left join scholarship s2 on a.scholarship_id = s2.id
+        where a.state = 1
+    </select>
 
 </mapper>

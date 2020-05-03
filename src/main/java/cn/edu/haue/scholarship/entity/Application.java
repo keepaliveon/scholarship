@@ -2,6 +2,8 @@ package cn.edu.haue.scholarship.entity;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -39,5 +41,24 @@ public class Application implements Serializable {
     @ApiModelProperty(value = "申请时间")
     private LocalDateTime createTime;
 
+    @ApiModelProperty(value = "姓名")
+    @TableField(exist = false)
+    private String name;
+
+    @ApiModelProperty(value = "班级")
+    @TableField(exist = false)
+    private String clazz;
+
+    @ApiModelProperty(value = "专业")
+    @TableField(exist = false)
+    private String spec;
+
+    @ApiModelProperty(value = "学年")
+    @TableField(exist = false)
+    private String year;
+
+    @ApiModelProperty(value = "奖学金")
+    @TableField(exist = false)
+    private String scholarshipName;
 
 }

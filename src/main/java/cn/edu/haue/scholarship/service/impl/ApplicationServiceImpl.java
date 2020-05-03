@@ -6,6 +6,9 @@ import cn.edu.haue.scholarship.service.IApplicationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.List;
+
 /**
  * <p>
  * 申请 服务实现类
@@ -17,4 +20,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ApplicationServiceImpl extends ServiceImpl<ApplicationMapper, Application> implements IApplicationService {
 
+    @Resource
+    private ApplicationMapper applicationMapper;
+
+    @Override
+    public List<Application> listPublicity() {
+        return applicationMapper.listPublicity();
+    }
 }
