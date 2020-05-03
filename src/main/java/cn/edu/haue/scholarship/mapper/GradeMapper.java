@@ -5,6 +5,7 @@ import cn.edu.haue.scholarship.entity.Student;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -18,5 +19,5 @@ public interface GradeMapper extends BaseMapper<Grade> {
 
     IPage<Grade> findAllByYearUnitId(Page<?> page, Integer unitId);
 
-    Grade getStudentGradeInfoByStudentIdAndYear(String id, String year);
+    Grade getStudentGradeInfoByStudentIdAndYear(@Param("studentId") String id, @Param("year") String year);
 }

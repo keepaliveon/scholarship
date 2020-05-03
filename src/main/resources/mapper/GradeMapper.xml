@@ -35,39 +35,39 @@
     </select>
     <select id="getStudentGradeInfoByStudentIdAndYear" resultType="cn.edu.haue.scholarship.entity.Grade">
         select s.name,
-        g.score,
-        g.quality,
-        g.fail,
-        (select (select count(g2.student_id)
-        from grade g2
-        LEFT JOIN student s2 ON s2.student_id = g2.student_id
-        LEFT JOIN unit u1b ON u1b.id = s2.unit_id
-        where (g1.score * 0.7 + g1.quality * 0.3) &lt; (g2.score * 0.7 + g2.quality * 0.3)
-        and u1b.id = u1a.id
-        and g2.year = '2018-2019') + 1
-        from grade g1
-        LEFT JOIN student s1 ON s1.student_id = g1.student_id
-        LEFT JOIN unit u1a ON u1a.id = s1.unit_id
-        WHERE s1.student_id = '201612211402'
-        and g1.year = '2018-2019') as class_rank,
-        (select (select count(g2.student_id)
-        from grade g2
-        LEFT JOIN student s2 ON s2.student_id = g2.student_id
-        LEFT JOIN unit u1b ON u1b.id = s2.unit_id
-        LEFT JOIN unit u2b ON u2b.id = u1b.pid
-        where (g1.score * 0.7 + g1.quality * 0.3) &lt; (g2.score * 0.7 + g2.quality * 0.3)
-        and u2b.id = u2a.id
-        and g2.year = '2018-2019') + 1
-        from grade g1
-        LEFT JOIN student s1 ON s1.student_id = g1.student_id
-        LEFT JOIN unit u1a ON u1a.id = s1.unit_id
-        LEFT JOIN unit u2a ON u2a.id = u1a.pid
-        WHERE s1.student_id = '201612211402'
-        and g1.year = '2018-2019') as spec_rank
+               g.score,
+               g.quality,
+               g.fail,
+               (select (select count(g2.student_id)
+                        from grade g2
+                                 LEFT JOIN student s2 ON s2.student_id = g2.student_id
+                                 LEFT JOIN unit u1b ON u1b.id = s2.unit_id
+                        where (g1.score * 0.7 + g1.quality * 0.3) &lt; (g2.score * 0.7 + g2.quality * 0.3)
+                          and u1b.id = u1a.id
+                          and g2.year = #{year,jdbcType=CHAR}) + 1
+                from grade g1
+                         LEFT JOIN student s1 ON s1.student_id = g1.student_id
+                         LEFT JOIN unit u1a ON u1a.id = s1.unit_id
+                WHERE s1.student_id = #{studentId,jdbcType=CHAR}
+                  and g1.year = #{year,jdbcType=CHAR}) as class_rank,
+               (select (select count(g2.student_id)
+                        from grade g2
+                                 LEFT JOIN student s2 ON s2.student_id = g2.student_id
+                                 LEFT JOIN unit u1b ON u1b.id = s2.unit_id
+                                 LEFT JOIN unit u2b ON u2b.id = u1b.pid
+                        where (g1.score * 0.7 + g1.quality * 0.3) &lt; (g2.score * 0.7 + g2.quality * 0.3)
+                          and u2b.id = u2a.id
+                          and g2.year = #{year,jdbcType=CHAR}) + 1
+                from grade g1
+                         LEFT JOIN student s1 ON s1.student_id = g1.student_id
+                         LEFT JOIN unit u1a ON u1a.id = s1.unit_id
+                         LEFT JOIN unit u2a ON u2a.id = u1a.pid
+                WHERE s1.student_id = #{studentId,jdbcType=CHAR}
+                  and g1.year = #{year,jdbcType=CHAR}) as spec_rank
         from grade g
-        left join student s on g.student_id = s.student_id
-        where s.student_id = '201612211402'
-        and g.year = '2018-2019';
+                 left join student s on g.student_id = s.student_id
+        where s.student_id = #{studentId,jdbcType=CHAR}
+          and g.year = #{year,jdbcType=CHAR};
     </select>
 
 

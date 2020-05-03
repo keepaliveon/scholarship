@@ -42,7 +42,7 @@ public class Scholarship implements Serializable {
     @ApiModelProperty(value = "学年")
     private String year;
 
-    @ApiModelProperty(value = "已分配")
+    @ApiModelProperty(value = "获奖人数")
     @TableField(exist = false)
     private Integer assigned;
 

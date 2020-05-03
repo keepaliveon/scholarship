@@ -134,12 +134,17 @@ class ScholarshipApplicationTests {
     @Test
     void t8() {
         QueryWrapper<Grade> queryWrapper = new QueryWrapper<>();
-        UpdateWrapper<Grade> updateWrapper = new UpdateWrapper<>();
         Map<String, Object> columnMap = new HashMap<>();
         columnMap.put("student_id","201610321220");
         columnMap.put("year","2018-2019");
         queryWrapper.allEq(columnMap);
         Grade grade = gradeMapper.selectOne(queryWrapper);
+        System.out.println(grade);
+    }
+
+    @Test
+    void t9() {
+        Grade grade = gradeMapper.getStudentGradeInfoByStudentIdAndYear("201612211415", "2018-2019");
         System.out.println(grade);
     }
 

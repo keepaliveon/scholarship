@@ -4,17 +4,17 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.edu.haue.scholarship.entity.Scholarship">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="description" property="description" />
-        <result column="requirement" property="requirement" />
-        <result column="year" property="year" />
-        <result column="assigned" property="assigned" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="requirement" property="requirement"/>
+        <result column="year" property="year"/>
+        <result column="assigned" property="assigned"/>
     </resultMap>
     <select id="findAll" resultMap="BaseResultMap">
-        select a.id, a.name, a.year, sum(*) as assigned
+        select a.id, a.name, a.year, count(b.student_id) as assigned
         from scholarship as a
-                 left join application as b on a.id = b.scholarship_id
+                 left join application as b on a.id = b.scholarship_id and b.state = 1
         group by a.id
     </select>
 
