@@ -6,6 +6,7 @@ import cn.edu.haue.scholarship.entity.Grade;
 import cn.edu.haue.scholarship.entity.Unit;
 import cn.edu.haue.scholarship.mapper.AdminMapper;
 import cn.edu.haue.scholarship.mapper.CounsellorMapper;
+import cn.edu.haue.scholarship.mapper.GradeMapper;
 import cn.edu.haue.scholarship.mapper.UnitMapper;
 import cn.edu.haue.scholarship.service.IAdminService;
 import cn.edu.haue.scholarship.service.IGradeService;
@@ -18,7 +19,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 class ScholarshipApplicationTests {
@@ -37,6 +40,9 @@ class ScholarshipApplicationTests {
 
     @Resource
     private UnitMapper unitMapper;
+
+    @Resource
+    private GradeMapper gradeMapper;
 
     @Resource
     private CounsellorMapper counsellorMapper;
@@ -123,6 +129,18 @@ class ScholarshipApplicationTests {
         UpdateWrapper<Grade> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("student_id", grade.getStudentId()).eq("year", grade.getYear());
         gradeService.saveOrUpdate(grade, updateWrapper);
+    }
+
+    @Test
+    void t8() {
+        QueryWrapper<Grade> queryWrapper = new QueryWrapper<>();
+        UpdateWrapper<Grade> updateWrapper = new UpdateWrapper<>();
+        Map<String, Object> columnMap = new HashMap<>();
+        columnMap.put("student_id","201610321220");
+        columnMap.put("year","2018-2019");
+        queryWrapper.allEq(columnMap);
+        Grade grade = gradeMapper.selectOne(queryWrapper);
+        System.out.println(grade);
     }
 
 }

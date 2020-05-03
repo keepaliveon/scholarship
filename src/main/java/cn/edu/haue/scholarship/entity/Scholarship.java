@@ -1,6 +1,7 @@
 package cn.edu.haue.scholarship.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -41,5 +42,8 @@ public class Scholarship implements Serializable {
     @ApiModelProperty(value = "学年")
     private String year;
 
+    @ApiModelProperty(value = "已分配")
+    @TableField(exist = false)
+    private Integer assigned;
 
 }

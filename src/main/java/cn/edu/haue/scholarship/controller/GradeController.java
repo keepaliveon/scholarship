@@ -5,7 +5,6 @@ import cn.edu.haue.scholarship.entity.Grade;
 import cn.edu.haue.scholarship.entity.Student;
 import cn.edu.haue.scholarship.service.IGradeService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.http.HttpStatus;
@@ -32,18 +31,7 @@ public class GradeController {
 
     @PostMapping("{year}")
     public ResponseEntity<?> upload(@RequestBody List<Grade> data, @PathVariable("year") String year) {
-        int count = 0;
-        for (Grade item : data) {
-            item.setYear(year);
-            try {
-                if (gradeService.save(item)) {
-                    count++;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return new ResponseEntity<>("成功导入" + count + "条记录", HttpStatus.OK);
+        return new ResponseEntity<>(gradeService.upload(data, year), HttpStatus.OK);
     }
 
     @GetMapping("{unitId}")

@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 成绩平均分 服务类
@@ -15,5 +17,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-04-23
  */
 public interface IGradeService extends IService<Grade> {
+
     IPage<Grade> listByYearUnitId(Page<Student> page, Integer unitId);
+
+    String upload(List<Grade> grades, String year);
 }

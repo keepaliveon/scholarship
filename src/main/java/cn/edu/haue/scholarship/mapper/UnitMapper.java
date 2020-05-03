@@ -17,4 +17,6 @@ public interface UnitMapper extends BaseMapper<Unit> {
     List<Unit> getChildren();
 
     List<Unit> getTree(Integer id);
+
+    List<Unit> getFirstUnit();
 }

@@ -27,6 +27,11 @@ public class UnitController {
     @Resource
     private IUnitService unitService;
 
+    @GetMapping("first")
+    public ResponseEntity<List<Unit>> getFirst() {
+        return new ResponseEntity<>(unitService.getFirstUnit(), HttpStatus.OK);
+    }
+
     @GetMapping("tree/{id}")
     public ResponseEntity<List<Unit>> getTree(@PathVariable("id") Integer id) {
         return new ResponseEntity<>(unitService.getTree(id), HttpStatus.OK);

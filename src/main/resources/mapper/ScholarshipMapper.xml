@@ -9,6 +9,13 @@
         <result column="description" property="description" />
         <result column="requirement" property="requirement" />
         <result column="year" property="year" />
+        <result column="assigned" property="assigned" />
     </resultMap>
+    <select id="findAll" resultMap="BaseResultMap">
+        select a.id, a.name, a.year, sum(*) as assigned
+        from scholarship as a
+                 left join application as b on a.id = b.scholarship_id
+        group by a.id
+    </select>
 
 </mapper>

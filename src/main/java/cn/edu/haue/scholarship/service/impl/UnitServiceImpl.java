@@ -32,4 +32,9 @@ public class UnitServiceImpl extends ServiceImpl<UnitMapper, Unit> implements IU
     public List<Unit> getNoRootTree(Integer id) {
         return unitMapper.getTree(id).get(0).getChildren();
     }
+
+    @Override
+    public List<Unit> getFirstUnit() {
+        return unitMapper.getFirstUnit();
+    }
 }

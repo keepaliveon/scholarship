@@ -18,5 +18,7 @@ public interface IUnitService extends IService<Unit> {
     List<Unit> getTree(Integer id);
 
     List<Unit> getNoRootTree(Integer id);
+
+    List<Unit> getFirstUnit();
 }
 

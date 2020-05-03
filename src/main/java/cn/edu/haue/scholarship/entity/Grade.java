@@ -30,6 +30,18 @@ public class Grade implements Serializable {
     @ApiModelProperty(value = "学号")
     private String studentId;
 
+    @TableField(exist = false)
+    @ApiModelProperty(value = "姓名")
+    private String name;
+
+    @TableField(exist = false)
+    @ApiModelProperty(value = "专业")
+    private String speciality;
+
+    @TableField(exist = false)
+    @ApiModelProperty(value = "班级")
+    private String clazz;
+
     @TableId
     @ApiModelProperty(value = "学年")
     private String year;
@@ -44,15 +56,15 @@ public class Grade implements Serializable {
     private Boolean fail;
 
     @TableField(exist = false)
-    private String name;
-
-    @TableField(exist = false)
-    private String clazz;
-
-    @TableField(exist = false)
-    private String speciality;
-
-    @TableField(exist = false)
+    @ApiModelProperty(value = "综合分")
     private Float mark;
+
+    @TableField(exist = false)
+    @ApiModelProperty(value = "班级排名")
+    private Integer classRank;
+
+    @TableField(exist = false)
+    @ApiModelProperty(value = "专业排名")
+    private Integer specRank;
 
 }

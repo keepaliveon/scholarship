@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -38,16 +39,24 @@ public class ScholarshipController {
 
     @GetMapping
     public ResponseEntity<List<Scholarship>> list() {
-        return new ResponseEntity<>(scholarshipService.list(), HttpStatus.OK);
+        return new ResponseEntity<>(scholarshipService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<?> find(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(scholarshipService.getById(id), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
-        if (scholarshipService.removeById(id)) {
-            return new ResponseEntity<>("删除成功", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("删除失败", HttpStatus.OK);
+        String message;
+        try {
+            scholarshipService.removeById(id);
+            message = "删除成功";
+        } catch (Exception e) {
+            message = "删除失败";
         }
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
 }

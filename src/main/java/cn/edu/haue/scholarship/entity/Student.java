@@ -39,22 +39,25 @@ public class Student implements Serializable {
     @ApiModelProperty(value = "性别")
     private String sex;
 
-    @ApiModelProperty(value = "所属单位")
+    @ApiModelProperty(value = "所属单位ID")
     private Integer unitId;
 
     @ApiModelProperty(value = "密码")
     private String password;
 
+    @ApiModelProperty(value = "班级")
     @TableField(exist = false)
     private String clazz;
 
+    @ApiModelProperty(value = "专业")
     @TableField(exist = false)
     private String speciality;
 
+    @ApiModelProperty(value = "身份证")
     @TableField(exist = false)
     private String idNumber;
 
     public String getRole() {
-        return RoleName.ROLE_ADMIN.name();
+        return RoleName.ROLE_STUDENT.name();
     }
 }

@@ -49,7 +49,6 @@ public class StudentController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            count++;
         }
         return new ResponseEntity<>("成功导入" + count + "条记录", HttpStatus.OK);
     }

@@ -17,5 +17,8 @@
     <select id="getTree" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         SELECT * FROM unit WHERE id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="getFirstUnit" resultMap="BaseResultMap">
+        select * from unit where pid = (select id from unit where pid is null);
+    </select>
 
 </mapper>

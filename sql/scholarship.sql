@@ -54,17 +54,6 @@ CREATE TABLE `scholarship`
     PRIMARY KEY (`id`)
 ) COMMENT '奖学金';
 
-DROP TABLE IF EXISTS `distribution`;
-CREATE TABLE `distribution`
-(
-    `unit_id`        int NOT NULL COMMENT '单位id',
-    `scholarship_id` int NOT NULL COMMENT '奖学金id',
-    `num`            int NOT NULL COMMENT '分配名额',
-    PRIMARY KEY (`unit_id`, `scholarship_id`),
-    CONSTRAINT FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`),
-    CONSTRAINT FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship` (`id`)
-) COMMENT '名额分配';
-
 DROP TABLE IF EXISTS `application`;
 CREATE TABLE `application`
 (

@@ -18,4 +18,5 @@ public interface GradeMapper extends BaseMapper<Grade> {
 
     IPage<Grade> findAllByYearUnitId(Page<?> page, Integer unitId);
 
+    Grade getStudentGradeInfoByStudentIdAndYear(String id, String year);
 }
