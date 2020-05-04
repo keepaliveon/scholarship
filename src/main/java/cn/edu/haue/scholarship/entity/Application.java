@@ -36,7 +36,7 @@ public class Application implements Serializable {
     private String level;
 
     @ApiModelProperty(value = "申请状态")
-    private Integer state;
+    private Boolean state;
 
     @ApiModelProperty(value = "申请时间")
     private LocalDateTime createTime;
@@ -59,6 +59,6 @@ public class Application implements Serializable {
 
     @ApiModelProperty(value = "奖学金")
     @TableField(exist = false)
-    private String scholarshipName;
+    private String scholarship;
 
 }

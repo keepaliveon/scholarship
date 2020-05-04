@@ -15,4 +15,6 @@ import java.util.List;
  */
 public interface IScholarshipService extends IService<Scholarship> {
     List<Scholarship> findAll();
+
+    List<Scholarship> findYear(String year);
 }

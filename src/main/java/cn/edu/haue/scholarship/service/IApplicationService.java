@@ -15,4 +15,6 @@ import java.util.List;
  */
 public interface IApplicationService extends IService<Application> {
     List<Application> listPublicity();
+
+    List<Application> listJudge(String year, Integer unitId);
 }

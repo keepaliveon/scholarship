@@ -2,9 +2,13 @@ package cn.edu.haue.scholarship.controller;
 
 
 import cn.edu.haue.scholarship.entity.Counsellor;
+import cn.edu.haue.scholarship.entity.Student;
 import cn.edu.haue.scholarship.security.CurrentUser;
 import cn.edu.haue.scholarship.security.UserPrincipal;
 import cn.edu.haue.scholarship.service.ICounsellorService;
+import cn.edu.haue.scholarship.service.IStudentService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,26 +35,32 @@ public class CounsellorController {
     private ICounsellorService counsellorService;
 
     @Resource
+    private IStudentService studentService;
+
+    @Resource
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping("auth")
-    @ApiOperation("从认证上下文获取辅导员信息")
-    public ResponseEntity<Counsellor> auth(@ApiIgnore @CurrentUser UserPrincipal userPrincipal) {
+    @GetMapping("current")
+    @ApiOperation("获取当前辅导员")
+    public ResponseEntity<Counsellor> current(@ApiIgnore @CurrentUser UserPrincipal userPrincipal) {
         Counsellor counsellor = counsellorService.getById(userPrincipal.getUsername());
         return new ResponseEntity<>(counsellor, HttpStatus.OK);
     }
 
     @GetMapping
+    @ApiOperation("辅导员列表")
     public ResponseEntity<List<Counsellor>> list() {
         return new ResponseEntity<>(counsellorService.listAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
+    @ApiOperation("根据工号查找辅导员信息")
     public ResponseEntity<Counsellor> findById(@PathVariable("id") String id) {
         return new ResponseEntity<>(counsellorService.getById(id), HttpStatus.OK);
     }
 
     @PutMapping
+    @ApiOperation("更新辅导员信息")
     public ResponseEntity<String> update(@RequestBody Counsellor counsellor) {
         if (counsellorService.updateById(counsellor)) {
             return new ResponseEntity<>("更新成功", HttpStatus.OK);
@@ -60,6 +70,7 @@ public class CounsellorController {
     }
 
     @PostMapping
+    @ApiOperation("新建辅导员")
     public ResponseEntity<String> create(@RequestBody Counsellor counsellor) {
         counsellor.setPassword(passwordEncoder.encode(counsellor.getStaffId()));
         if (counsellorService.save(counsellor)) {
@@ -70,6 +81,7 @@ public class CounsellorController {
     }
 
     @DeleteMapping("{id}")
+    @ApiOperation("删除辅导员")
     public ResponseEntity<String> delete(@PathVariable("id") String id) {
         if (counsellorService.removeById(id)) {
             return new ResponseEntity<>("删除成功", HttpStatus.OK);

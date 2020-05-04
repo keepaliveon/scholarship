@@ -4,15 +4,16 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.edu.haue.scholarship.entity.Application">
-        <id column="student_id" property="studentId" />
-        <result column="scholarship_id" property="scholarshipId" />
-        <result column="level" property="level" />
-        <result column="state" property="state" />
-        <result column="name" property="name" />
-        <result column="class" property="clazz" />
-        <result column="spec" property="spec" />
-        <result column="year" property="year" />
-        <result column="s_name" property="scholarshipName" />
+        <id column="student_id" property="studentId"/>
+        <result column="scholarship_id" property="scholarshipId"/>
+        <result column="level" property="level"/>
+        <result column="state" property="state"/>
+        <result column="create_time" property="createTime"/>
+        <result column="name" property="name"/>
+        <result column="class" property="clazz"/>
+        <result column="spec" property="spec"/>
+        <result column="year" property="year"/>
+        <result column="scholarship" property="scholarship"/>
     </resultMap>
     <select id="listPublicity" resultMap="BaseResultMap">
         select a.student_id as student_id,
@@ -20,7 +21,7 @@
                u1.name      as class,
                u2.name      as spec,
                s2.year      as year,
-               s2.name      as s_name,
+               s2.name      as scholarship,
                a.level      as level
         from application a
                  left join student s on a.student_id = s.student_id
@@ -28,6 +29,17 @@
                  left join unit u2 on u1.pid = u2.id
                  left join scholarship s2 on a.scholarship_id = s2.id
         where a.state = 1
+    </select>
+    <select id="listJudge" resultMap="BaseResultMap">
+        select a.scholarship_id, a.student_id, stu.name as name, u2.name as spec, u1.name as class, s.year, s.name as scholarship, a.state, a.level, a.create_time
+        from application a
+                 left join scholarship s on a.scholarship_id = s.id
+                 left join student stu on a.student_id = stu.student_id
+                 left join unit u1 on stu.unit_id = u1.id
+                 left join unit u2 on u1.pid = u2.id
+                 left join unit u3 on u2.pid = u3.id
+        where s.year = #{year,jdbcType=CHAR}
+          and u3.id = #{unitId,jdbcType=INTEGER}
     </select>
 
 </mapper>

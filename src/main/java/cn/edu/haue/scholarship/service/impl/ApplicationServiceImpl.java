@@ -27,4 +27,9 @@ public class ApplicationServiceImpl extends ServiceImpl<ApplicationMapper, Appli
     public List<Application> listPublicity() {
         return applicationMapper.listPublicity();
     }
+
+    @Override
+    public List<Application> listJudge(String year, Integer unitId) {
+        return applicationMapper.listJudge(year, unitId);
+    }
 }

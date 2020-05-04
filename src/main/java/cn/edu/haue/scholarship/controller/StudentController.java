@@ -53,27 +53,29 @@ public class StudentController {
         return new ResponseEntity<>("成功导入" + count + "条记录", HttpStatus.OK);
     }
 
-    @GetMapping("auth")
-    @ApiOperation("从认证上下文获取学生信息")
-    public ResponseEntity<Student> auth(@ApiIgnore @CurrentUser UserPrincipal userPrincipal) {
-        Student student = studentService.getById(userPrincipal.getUsername());
+    @GetMapping("info/{id}")
+    @ApiOperation("获取学生信息")
+    public ResponseEntity<Student> student(@PathVariable("id") String id) {
+        Student student = studentService.findStudentById(id);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
-    @GetMapping
-    @ApiOperation("获取学生信息")
-    public ResponseEntity<Student> student(@ApiIgnore @CurrentUser UserPrincipal userPrincipal) {
+    @GetMapping("current")
+    @ApiOperation("获取当前学生")
+    public ResponseEntity<Student> current(@ApiIgnore @CurrentUser UserPrincipal userPrincipal) {
         Student student = studentService.findStudentById(userPrincipal.getUsername());
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
-    @GetMapping("{unitId}")
-    public ResponseEntity<IPage<Student>> list(@PathVariable("unitId") Integer unitId, Long current, Long size) {
+    @GetMapping("unit/{id}")
+    @ApiOperation("获取某年级的所有学生")
+    public ResponseEntity<IPage<Student>> list(@PathVariable("id") Integer id, Long current, Long size) {
         Page<Student> page = new Page<>(current, size);
-        return new ResponseEntity<>(studentService.listByYearUnitId(page, unitId), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.listByYearUnitId(page, id), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
+    @ApiOperation("删除学生")
     public ResponseEntity<String> delete(@PathVariable("id") String id) {
         boolean b = studentService.removeById(id);
         if (b) {

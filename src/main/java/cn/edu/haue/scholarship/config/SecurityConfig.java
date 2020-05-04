@@ -82,11 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js")
                 .permitAll()
-                .antMatchers("/api/auth/**")
-                .permitAll()
-                .antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
-                .permitAll()
-                .antMatchers("/api/polls/**", "/api/users/**")
+                .antMatchers("/api/user/auth")
                 .permitAll()
                 // swagger 文档
                 .antMatchers("/swagger-ui.html").permitAll()

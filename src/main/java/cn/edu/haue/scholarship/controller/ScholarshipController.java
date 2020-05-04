@@ -2,15 +2,14 @@ package cn.edu.haue.scholarship.controller;
 
 
 import cn.edu.haue.scholarship.entity.Scholarship;
-import cn.edu.haue.scholarship.entity.Student;
 import cn.edu.haue.scholarship.service.IScholarshipService;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -28,6 +27,9 @@ public class ScholarshipController {
     @Resource
     private IScholarshipService scholarshipService;
 
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Scholarship scholarship) {
         if (scholarshipService.save(scholarship)) {
@@ -37,9 +39,24 @@ public class ScholarshipController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<List<Scholarship>> list() {
+    @PutMapping
+    private ResponseEntity<?> update(@RequestBody Scholarship scholarship) {
+        if (scholarshipService.updateById(scholarship)) {
+            return new ResponseEntity<>("更新成功", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("更新失败", HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("all")
+    public ResponseEntity<List<Scholarship>> listAll() {
         return new ResponseEntity<>(scholarshipService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("year")
+    public ResponseEntity<List<Scholarship>> listCurrentYear() {
+        String year = redisTemplate.opsForValue().get("year");
+        return new ResponseEntity<>(scholarshipService.findYear(year), HttpStatus.OK);
     }
 
     @GetMapping("{id}")

@@ -17,4 +17,5 @@ public interface ApplicationMapper extends BaseMapper<Application> {
 
     List<Application> listPublicity();
 
+    List<Application> listJudge(String year, Integer unitId);
 }

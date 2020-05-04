@@ -15,4 +15,5 @@ import java.util.List;
  */
 public interface ScholarshipMapper extends BaseMapper<Scholarship> {
     List<Scholarship> findAll();
+    List<Scholarship> findYear(String year);
 }

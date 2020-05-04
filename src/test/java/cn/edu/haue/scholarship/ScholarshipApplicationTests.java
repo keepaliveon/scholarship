@@ -15,7 +15,9 @@ import cn.edu.haue.scholarship.service.IUnitService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.Resource;
@@ -49,6 +51,9 @@ class ScholarshipApplicationTests {
 
     @Resource
     private IGradeService gradeService;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     @Test
     void contextLoads() {
@@ -135,8 +140,8 @@ class ScholarshipApplicationTests {
     void t8() {
         QueryWrapper<Grade> queryWrapper = new QueryWrapper<>();
         Map<String, Object> columnMap = new HashMap<>();
-        columnMap.put("student_id","201610321220");
-        columnMap.put("year","2018-2019");
+        columnMap.put("student_id", "201610321220");
+        columnMap.put("year", "2018-2019");
         queryWrapper.allEq(columnMap);
         Grade grade = gradeMapper.selectOne(queryWrapper);
         System.out.println(grade);
@@ -146,6 +151,40 @@ class ScholarshipApplicationTests {
     void t9() {
         Grade grade = gradeMapper.getStudentGradeInfoByStudentIdAndYear("201612211415", "2018-2019");
         System.out.println(grade);
+    }
+
+    @Test
+    void t10() {
+        redisTemplate.opsForValue().set("year", "2018-2019");
+    }
+
+    @Test
+    void t12() {
+        redisTemplate.opsForValue().set("year", "2019-2020");
+    }
+
+    @Test
+    void t11() {
+        System.out.println(redisTemplate.opsForValue().get("year"));
+    }
+
+    @Test
+    void t13() {
+        redisTemplate.opsForList().leftPush("years", "2019-2020");
+        redisTemplate.opsForList().leftPush("years", "2018-2019");
+        redisTemplate.opsForList().leftPush("years", "2017-2018");
+        redisTemplate.opsForList().leftPush("years", "2016-2017");
+    }
+
+    @Test
+    void t14() {
+        Long size = redisTemplate.opsForList().size("years");
+        List<String> years = redisTemplate.opsForList().range("years", 0L, size - 1);
+        System.out.println(years);
+    }
+
+    @Test
+    void t15() {
     }
 
 }

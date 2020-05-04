@@ -27,4 +27,9 @@ public class ScholarshipServiceImpl extends ServiceImpl<ScholarshipMapper, Schol
     public List<Scholarship> findAll() {
         return scholarshipMapper.findAll();
     }
+
+    @Override
+    public List<Scholarship> findYear(String year) {
+        return scholarshipMapper.findYear(year);
+    }
 }
